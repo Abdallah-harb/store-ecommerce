@@ -11,7 +11,7 @@
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="">الرئيسية </a>
                                 </li>
-                                <li class="breadcrumb-item active">تعديل طريقه التوصيل
+                                <li class="breadcrumb-item active">وسائل التوصيل
                                 </li>
                             </ol>
                         </div>
@@ -48,80 +48,38 @@
 
                                             <input type="hidden" name="id" value="{{$shipping_method -> id}}">
 
-                                            <div class="form-group">
-                                                <label> لوجو التجار </label>
-                                                <label id="projectinput7" class="file center-block">
-                                                    <input type="file" id="file" name="logo">
-                                                    <span class="file-custom"></span>
-                                                </label>
-                                                @error('logo')
-                                                <span class="text-danger">{{$message}}</span>
-                                                @enderror
-                                            </div>
-
                                             <div class="form-body">
 
-                                                <h4 class="form-section"><i class="ft-home"></i> بيانات المتجر </h4>
+                                                <!--h4 class="form-section"><i class="ft-home"></i> بيانات المتجر </--h4>-->
 
 
                                                 <div class="row">
                                                     <div class="col-md-6">
                                                         <div class="form-group">
                                                             <label for="projectinput1"> الاسم </label>
-                                                            <input type="text" value="" id="name"
+                                                            <input type="text" value="{{$shipping_method->value}}" id="value"
                                                                    class="form-control"
                                                                    placeholder="  "
-                                                                   name="name">
-                                                            @error("name")
+                                                                   name="value">
+                                                            @error("value")
+                                                            <span class="text-danger">{{$message}}</span>
+                                                            @enderror
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label for="projectinput1"> قيمه التوصيل </label>
+                                                            <input type="number" value="{{$shipping_method->plain_value}}" id="plain_value"
+                                                                   class="form-control"
+                                                                   placeholder="  "
+                                                                   name="plain_value">
+                                                            @error("value")
                                                             <span class="text-danger">{{$message}}</span>
                                                             @enderror
                                                         </div>
                                                     </div>
                                                 </div>
-
-
-
-
-
-                                                <di class="row">
-                                                    <div class="col-md-6 ">
-                                                        <div class="form-group">
-                                                            <label for="projectinput1"> العنوان  </label>
-                                                            <input type="text" id="pac-input"
-                                                                   class="form-control"
-                                                                   placeholder="  " name="address"
-                                                                   value=""
-                                                            >
-
-                                                            @error("address")
-                                                            <span class="text-danger"> {{$message}}</span>
-                                                            @enderror
-                                                        </div>
-                                                    </div>
-
-                                                </di>
-                                                <div class="row">
-                                                    <div class="col-md-6">
-                                                        <div class="form-group mt-1">
-                                                            <input type="checkbox" value="1"
-                                                                   name="active"
-                                                                   id="switcheryColor4"
-                                                                   class="switchery" data-color="success"
-                                                                  />
-                                                            <label for="switcheryColor4"
-                                                                   class="card-title ml-1">الحالة </label>
-
-                                                            @error("active")
-                                                            <span class="text-danger"> </span>
-                                                            @enderror
-                                                        </div>
-                                                    </div>
-                                                </div>
-
                                             </div>
-
-
-                                            <div id="map" style="height: 500px;width: 1000px;"></div>
 
                                             <div class="form-actions">
                                                 <button type="button" class="btn btn-warning mr-1"
