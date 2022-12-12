@@ -18,12 +18,33 @@ Route::group(['prefix' => LaravelLocalization::setLocale(),
     Route::group(['namespace' => 'Dashboard','middleware' => 'auth:admin','prefix' => 'admin'],function(){
 
         Route::get('/','DashboardController@index')->name('admin.dashboard');
+        Route::get('logout','LogonController@logout')->name('admin.logout');
 
-        ########## Settings ##############
+            ########## Shipping's  ##############
         Route::group(['prefix' => 'settings'],function(){
 
             Route::get('shipping-method/{type}','SettingsController@editShippingmethod')->name('shipping.method');
             Route::post('shipping-method/{id}','SettingsController@updateShippingmethod')->name('update.shipping.method');
+        });
+             ######### Edit profile #############
+        Route::group(['prefix' => 'profile'],function(){
+
+            Route::get('edit','ProfileController@editProfile')->name('edit.profile');
+            Route::put('update','ProfileController@updateProfile')->name('update.profile');
+            Route::get('edit/password','ProfileController@editpassword')->name('edit.password');
+            Route::put('update/password','ProfileController@updatpassword')->name('update.password');
+        });
+
+             ############ Categories ############
+        Route::group(['prefix'=>'categories'],function (){
+                ############## CRUD ############
+            Route::get('/','MainCategoriesController@index')->name('admin.mainCategories.all');
+            Route::get('create','MainCategoriesController@create')->name('admin.mainCategories.create');
+            Route::post('store','MainCategoriesController@store')->name('admin.mainCategories.store');
+            Route::get('edit/{id}','MainCategoriesController@edit')->name('admin.mainCategories.edit');
+            Route::post('update/{id}','MainCategoriesController@update')->name('admin.mainCategories.update');
+            Route::get('delete/{id}','MainCategoriesController@delete')->name('admin.mainCategories.delete');
+
         });
 
     });
