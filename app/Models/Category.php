@@ -24,4 +24,15 @@ class Category extends Model
     protected $casts = ['is_active' => 'boolean'];
 
     public $timestamps =true;
+
+    ######################## function helper to controller ##############################
+
+    public function scopeParent($query){
+        return $query->whereNull('parent_id');
+    }
+
+    public function getActive(){
+
+        return $this->is_active == 0?'غير مفعل':'مفعل';
+    }
 }
