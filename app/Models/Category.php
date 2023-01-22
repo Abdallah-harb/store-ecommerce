@@ -20,6 +20,8 @@ class Category extends Model
 
     protected $guarded = [];
 
+    protected $hidden = ['translations'];
+
     //make the value of is_translatble from [0 , 1 ] => to [true , false ] when I return it
     protected $casts = ['is_active' => 'boolean'];
 
@@ -31,8 +33,20 @@ class Category extends Model
         return $query->whereNull('parent_id');
     }
 
+
+
     public function getActive(){
 
         return $this->is_active == 0?'غير مفعل':'مفعل';
     }
+
+    public function scopeChild($query){
+        return $query->whereNotNull('parent_id');
+    }
+//relation to get name of main category for subcategory
+    public function _parent(){
+
+        return $this->belongsTo(self::class,'parent_id');
+    }
+
 }

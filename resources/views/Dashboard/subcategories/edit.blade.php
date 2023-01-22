@@ -1,5 +1,5 @@
 @extends('layouts.admin')
-@section('title') Add New Categories @endsection
+@section('title') Edit Categories @endsection
 @section('content')
     <div class="app-content content">
         <div class="content-wrapper">
@@ -10,9 +10,9 @@
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="{{route('admin.dashboard')}}">الرئيسية </a>
                                 </li>
-                                <li class="breadcrumb-item"><a href="{{route('admin.mainCategories.all')}}"> الاقسام الرئيسية </a>
+                                <li class="breadcrumb-item"><a href="{{route('admin.subcategories.all')}}"> الاقسام الفرعيه </a>
                                 </li>
-                                <li class="breadcrumb-item active">إضافة قسم رئيسي
+                                <li class="breadcrumb-item active"> تعديل - {{$mainCategory -> name}}
                                 </li>
                             </ol>
                         </div>
@@ -26,7 +26,7 @@
                         <div class="col-md-12">
                             <div class="card">
                                 <div class="card-header">
-                                    <h4 class="card-title" id="basic-layout-form"> إضافة قسم رئيسي </h4>
+                                    <h4 class="card-title" id="basic-layout-form"> تعديل قسم رئيسي </h4>
                                     <a class="heading-elements-toggle"><i
                                             class="la la-ellipsis-v font-medium-3"></i></a>
                                     <div class="heading-elements">
@@ -43,14 +43,36 @@
                                 <div class="card-content collapse show">
                                     <div class="card-body">
                                         <form class="form"
-                                              action="{{route('admin.mainCategories.store')}}"
+                                              action="{{route('admin.subcategories.update',$mainCategory -> id)}}"
                                               method="POST"
                                               enctype="multipart/form-data">
                                             @csrf
 
+                                            <input name="id" value="{{$mainCategory -> id}}" type="hidden">
+
                                             <div class="form-body">
 
                                                 <h4 class="form-section"><i class="ft-home"></i> بيانات القسم </h4>
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <div class="form-group">
+                                                            <label for="projectinput2"> أختر القسم </label>
+                                                            <select name="parent_id" class="select2 form-control">
+                                                                <optgroup label="من فضلك أختر القسم ">
+                                                                    @if($categories && $categories -> count() > 0)
+                                                                        @foreach($categories as $category)
+                                                                            <option
+                                                                                value="{{$category -> id }}" @if($category->id == $mainCategory->parent_id) selected @endif>{{$category -> name}}</option>
+                                                                        @endforeach
+                                                                    @endif
+                                                                </optgroup>
+                                                            </select>
+                                                            @error('parent_id')
+                                                            <span class="text-danger"> {{$message}}</span>
+                                                            @enderror
+                                                        </div>
+                                                    </div>
+                                                </div>
                                                 <div class="row">
                                                     <div class="col-md-6">
                                                         <div class="form-group">
@@ -58,7 +80,7 @@
                                                             <input type="text" id="name"
                                                                    class="form-control"
                                                                    placeholder="  "
-                                                                   value="{{old('name')}}"
+                                                                   value="{{$mainCategory -> name}}"
                                                                    name="name">
                                                             @error("name")
                                                             <span class="text-danger">{{$message}}</span>
@@ -71,7 +93,7 @@
                                                             <input type="text" id="slug"
                                                                    class="form-control"
                                                                    placeholder="  "
-                                                                   value="{{old('slug')}}"
+                                                                   value="{{$mainCategory -> slug}}"
                                                                    name="slug">
                                                             @error("slug")
                                                             <span class="text-danger">{{$message}}</span>
@@ -89,7 +111,7 @@
                                                                    name="is_active"
                                                                    id="switcheryColor4"
                                                                    class="switchery" data-color="success"
-                                                                  checked />
+                                                                   @if($mainCategory -> is_active == 1)checked @endif/>
                                                             <label for="switcheryColor4"
                                                                    class="card-title ml-1">الحالة  </label>
 
@@ -100,12 +122,19 @@
                                                     </div>
                                                 </div>
                                             </div>
+
+
                                             <div class="form-actions">
+                                                <button type="button" class="btn btn-warning mr-1"
+                                                        onclick="history.back();">
+                                                    <i class="ft-x"></i> تراجع
+                                                </button>
                                                 <button type="submit" class="btn btn-primary">
-                                                    <i class="la la-check-square-o"></i> أضافه قسم جديد
+                                                    <i class="la la-check-square-o"></i> تحديث
                                                 </button>
                                             </div>
                                         </form>
+
                                     </div>
                                 </div>
                             </div>

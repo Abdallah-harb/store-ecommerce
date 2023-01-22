@@ -47,6 +47,18 @@ Route::group(['prefix' => LaravelLocalization::setLocale(),
 
         });
 
+        ############ SubCategories ############
+        Route::group(['prefix'=>'subcategories'],function (){
+            ############## CRUD ############
+            Route::get('/','SubCategoriesController@index')->name('admin.subcategories.all');
+            Route::get('create','SubCategoriesController@create')->name('admin.subcategories.create');
+            Route::post('store','SubCategoriesController@store')->name('admin.subcategories.store');
+            Route::get('edit/{id}','SubCategoriesController@edit')->name('admin.subcategories.edit');
+            Route::post('update/{id}','SubCategoriesController@update')->name('admin.subcategories.update');
+            Route::get('delete/{id}','SubCategoriesController@delete')->name('admin.subcategories.delete');
+
+        });
+
     });
 
 
