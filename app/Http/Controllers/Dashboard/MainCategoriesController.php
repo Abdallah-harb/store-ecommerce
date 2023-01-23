@@ -63,7 +63,6 @@ class MainCategoriesController extends Controller
 
         try{
             $category = Category::find($id);
-            $category = Category::find($id);
             if(!$category)
                 return redirect()->route('admin.mainCategories.edit', $id)->with(['error'=>'هناك خطأ فى البيانات' ]);
 
