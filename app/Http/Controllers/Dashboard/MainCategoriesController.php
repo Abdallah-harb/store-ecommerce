@@ -18,30 +18,35 @@ class MainCategoriesController extends Controller
 
        return view('Dashboard.categories.index',compact('categories'));
     }
+
     public function create(){
 
         return view('Dashboard.categories.create');
     }
+
     public function store(MainCategoryRequest $request){
 
+
         try{
-            DB::beginTransaction();
+
             if(!$request->has('is_active'))
                 $request->request->add(['is_active' => 0]);
             else
                 $request->request->add(['is_active' => 1]);
 
             $category =   Category::create($request->except('_token'));
+
             //insert data on the categories_translation
-            $category -> name = $request->name;
-            $category -> save();
-            return redirect()->back()->with(['success' => 'تم أضافه القسم بنجاح']);
-            DB::commit();
+              $category -> name = $request->name;
+             $category -> save();
+            return redirect()->route('admin.mainCategories.all')->with(['success' => 'تم أضافه القسم بنجاح']);
+
         }catch (\Exception $ex){
         DB::rollBack();
           return redirect()->back()->with(['error'=>'هناك خطأ فى البيانات' ]);
        }
     }
+
     public function edit($id){
 
         $mainCategory =  Category::orderBy('id','DESC')->find($id);
@@ -57,7 +62,6 @@ class MainCategoriesController extends Controller
         //db
 
         try{
-            $category = Category::find($id);
             $category = Category::find($id);
             if(!$category)
                 return redirect()->route('admin.mainCategories.edit', $id)->with(['error'=>'هناك خطأ فى البيانات' ]);

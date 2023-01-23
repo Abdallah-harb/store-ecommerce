@@ -47,6 +47,30 @@ Route::group(['prefix' => LaravelLocalization::setLocale(),
 
         });
 
+        ############ SubCategories ############
+        Route::group(['prefix'=>'subcategories'],function (){
+            ############## CRUD ############
+            Route::get('/','SubCategoriesController@index')->name('admin.subcategories.all');
+            Route::get('create','SubCategoriesController@create')->name('admin.subcategories.create');
+            Route::post('store','SubCategoriesController@store')->name('admin.subcategories.store');
+            Route::get('edit/{id}','SubCategoriesController@edit')->name('admin.subcategories.edit');
+            Route::post('update/{id}','SubCategoriesController@update')->name('admin.subcategories.update');
+            Route::get('delete/{id}','SubCategoriesController@delete')->name('admin.subcategories.delete');
+
+        });
+
+        ############ Brands ############
+        Route::group(['prefix'=>'brands'],function (){
+            ############## CRUD ############
+            Route::get('/','BrandsController@index')->name('admin.brands.all');
+            Route::get('create','BrandsController@create')->name('admin.brands.create');
+            Route::post('store','BrandsController@store')->name('admin.brands.store');
+            Route::get('edit/{id}','BrandsController@edit')->name('admin.brands.edit');
+            Route::post('update/{id}','BrandsController@update')->name('admin.brands.update');
+            Route::get('delete/{id}','BrandsController@delete')->name('admin.brands.delete');
+
+        });
+
     });
 
 
