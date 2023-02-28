@@ -14,37 +14,45 @@ class MainCategoriesController extends Controller
     ################### CRUD Category ################
     public function index(){
 
-      $categories =  Category::parent()->orderBy('id','DESC')->paginate(PAGINATION_COUNT);
+      $categories =  Category::with('_parent')->orderBy('id','DESC')->paginate(PAGINATION_COUNT);
 
        return view('Dashboard.categories.index',compact('categories'));
     }
 
     public function create(){
 
-        return view('Dashboard.categories.create');
+        $categories =   Category::select('id','parent_id')->get();
+        return view('Dashboard.categories.create',compact('categories'));
     }
 
     public function store(MainCategoryRequest $request){
 
 
-        try{
+        //try{
 
             if(!$request->has('is_active'))
                 $request->request->add(['is_active' => 0]);
             else
                 $request->request->add(['is_active' => 1]);
 
-            $category =   Category::create($request->except('_token'));
+            //if user choose main category then we must remove paret id from the request
+
+            if($request -> type == 1) //main category
+            {
+                $request->request->add(['parent_id' => null]);
+            }
+
+            $category =   Category::create($request->except('_token','type'));
 
             //insert data on the categories_translation
               $category -> name = $request->name;
              $category -> save();
             return redirect()->route('admin.mainCategories.all')->with(['success' => 'تم أضافه القسم بنجاح']);
 
-        }catch (\Exception $ex){
-        DB::rollBack();
+       // }catch (\Exception $ex){
+      //  DB::rollBack();
           return redirect()->back()->with(['error'=>'هناك خطأ فى البيانات' ]);
-       }
+      // }
     }
 
     public function edit($id){

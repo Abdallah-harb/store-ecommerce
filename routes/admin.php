@@ -71,6 +71,26 @@ Route::group(['prefix' => LaravelLocalization::setLocale(),
 
         });
 
+                ############ Tags ############
+        Route::group(['prefix'=>'tags'],function (){
+            ############## CRUD ############
+            Route::get('/','TagsController@index')->name('admin.tags.all');
+            Route::get('create','TagsController@create')->name('admin.tags.create');
+            Route::post('store','TagsController@store')->name('admin.tags.store');
+            Route::get('edit/{id}','TagsController@edit')->name('admin.tags.edit');
+            Route::post('update/{id}','TagsController@update')->name('admin.tags.update');
+            Route::get('delete/{id}','TagsController@delete')->name('admin.tags.delete');
+
+        });
+
+            ################# Products ##############
+        Route::group(['prefix' => 'products'],function(){
+            ########### CRUD ###############
+            Route::get('/','ProductsController@index')->name('admin.products.all');
+            Route::get('general-information','ProductsController@create')->name('admin.products.general.create');
+            Route::post('store-general-information','ProductsController@store')->name('admin.products.general.store');
+        });
+
     });
 
 
