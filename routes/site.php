@@ -21,16 +21,36 @@ Route::group(['prefix' => LaravelLocalization::setLocale(),
                 #################################################
                 ########### This route for user login ###########
                 #################################################
+
+
     Route::group(['namespace' => 'Site','middleware' => 'auth:web'],function(){
-        Route::get('profile',function (){
-                 return "you Are Authenticated";
-        });
+
+        Route::get('profile',function (){  return "you Are Authenticated";});
+
+                ###################################################
+                ############# WishList ############################
+                ###################################################
+
+        Route::post('wishlist','WishListController@store')->name('wishlist.store');
+        Route::get('wishlist/products','WishListController@showWishlist')->name('wishlist.show');
+        Route::delete('wishlist','WishListController@deleteWishlist')->name('wishlist.delete');
 
     });
+
+
+
+
+
+
+
+
+
+
+
                 #################################################
                 ########### This route for guest  ###############
                 #################################################
-    Route::group(['namespace' => 'Site','middleware' => 'guest:web'],function(){
+    Route::group(['namespace' => 'Site'/*,'middleware' => 'guest:web'*/],function(){
 
         Route::get('/home', 'HomeController@home')->name('home');
         Route::get('category/{slug}','CategoryController@productBySlug')->name('category');

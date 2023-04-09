@@ -25,7 +25,7 @@
                                 class="header-icon-account"></i></a>
                     </div>
                     <div class="header_link_wishlist">
-                        <a href="" title="My Wishlists">
+                        <a href="{{route('wishlist.show')}}" title="My Wishlists">
                             <i class="header-icon-wishlist"></i>
                         </a>
                     </div>

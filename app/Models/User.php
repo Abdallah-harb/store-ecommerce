@@ -39,4 +39,17 @@ class User extends Authenticatable
     public function code(){
         return $this->hasMany(Users_verificationcodes::class,'user-id');
     }
+
+
+            //front end relations
+        //return all product on favorite that user has
+    public function wishlist(){
+
+        return $this->belongsToMany(Product::class,'wish_lists');
+    }
+        //return all wishlist of user and return wishlist that equal the product_id that i click of it
+    public function wishListsHas($product_id){
+
+        return self::wishlist()->where('product_id',$product_id)->exists();
+    }
 }
