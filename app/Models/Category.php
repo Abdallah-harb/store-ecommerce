@@ -46,10 +46,23 @@ class Category extends Model
     public function scopeChild($query){
         return $query->whereNotNull('parent_id');
     }
-//relation to get name of main category for subcategory
+        //relation to get name of main category for subcategory
     public function _parent(){
 
         return $this->belongsTo(self::class,'parent_id');
     }
 
+
+
+
+        // this relation used on frontend to show childrens of category and childrens of subcategory
+    public function childerens(){
+
+        return $this->hasMany(self::class,'parent_id');
+    }
+
+        // this relation used on frontend to show product of category
+    public function products(){
+        return $this->belongsToMany(Product::class,'product_categories','category_id','product_id','id','id');
+    }
 }

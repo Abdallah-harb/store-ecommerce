@@ -1,6 +1,6 @@
 <?php
 
-namespace App\models;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -8,5 +8,6 @@ class ProductImage extends Model
 {
     protected $table = 'product_images';
 
-    protected $fillable = ['product_id','photo'];
+    protected $fillable = ['product_id','photo','created_at','updated_at'];
+
 }

@@ -85,11 +85,62 @@ Route::group(['prefix' => LaravelLocalization::setLocale(),
 
             ################# Products ##############
         Route::group(['prefix' => 'products'],function(){
-            ########### CRUD ###############
+                        ########### CRUD General Products ###############
             Route::get('/','ProductsController@index')->name('admin.products.all');
             Route::get('general-information','ProductsController@create')->name('admin.products.general.create');
             Route::post('store-general-information','ProductsController@store')->name('admin.products.general.store');
+
+                        ########### CRUD Prices Products ###############
+            Route::get('price/{id}','ProductsController@getPrice')->name('admin.products.price.create');
+            Route::post('store-price','ProductsController@storePrice')->name('admin.products.price.store');
+
+                        ########### CRUD Prices Inventory ###############
+            Route::get('stock/{id}','ProductsController@getStock')->name('admin.products.stock.create');
+            Route::post('store-stock','ProductsController@storeStock')->name('admin.products.stock.store');
+
+                      ########### CRUD Images Products ###############
+            Route::get('image/{id}','ProductsController@getImage')->name('admin.products.image.create');
+            Route::post('store-image','ProductsController@storeimage')->name('admin.products.image.store');
+            Route::post('image/db','ProductsController@saveimagedb')->name('admin.products.image.db');
+
         });
+
+                     ############ Attributes ############
+        Route::group(['prefix'=>'attributes'],function (){
+            ############## CRUD ############
+            Route::get('/','AttributesController@index')->name('admin.attributes.all');
+            Route::get('create','AttributesController@create')->name('admin.attributes.create');
+            Route::post('store','AttributesController@store')->name('admin.attributes.store');
+            Route::get('edit/{id}','AttributesController@edit')->name('admin.attributes.edit');
+            Route::post('update/{id}','AttributesController@update')->name('admin.attributes.update');
+            Route::get('delete/{id}','AttributesController@delete')->name('admin.attributes.delete');
+
+        });
+
+                ############ options ############
+        Route::group(['prefix'=>'options'],function (){
+            ############## CRUD ############
+            Route::get('/','optionController@index')->name('admin.options.all');
+            Route::get('create','OptionController@create')->name('admin.options.create');
+            Route::post('store','OptionController@store')->name('admin.options.store');
+            Route::get('edit/{id}','OptionController@edit')->name('admin.options.edit');
+            Route::post('update/{id}','OptionController@update')->name('admin.options.update');
+            Route::get('delete/{id}','OptionController@delete')->name('admin.options.delete');
+
+        });
+               ############ Sliders ############
+        Route::group(['prefix'=>'sliders'],function (){
+            ############## CRUD ############
+            Route::get('slide','SlidersController@getImage')->name('admin.slide.create');
+            Route::post('store_slide','SlidersController@storeimage')->name('admin.slide.store');
+            Route::post('slide/db','SlidersController@saveimagedb')->name('admin.slide.db');
+
+        });
+
+
+
+
+
 
     });
 

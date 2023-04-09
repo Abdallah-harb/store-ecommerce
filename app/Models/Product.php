@@ -37,10 +37,20 @@ class Product extends Model
     public $timestamps =true;
 
 
+    public function getActive(){
+
+        return $this->is_active == 0?'غير مفعل':'مفعل';
+    }
+
+    public function scopeActive($query){
+
+        return $query->where('is_active',1);
+    }
+
+
     //relations
 
     public function brand(){
-
         return $this->belongsTo(Brand::class)->withDefault();
     }
 
@@ -53,4 +63,17 @@ class Product extends Model
 
         return $this->belongsToMany(Tag::class,'product_tags');
     }
+
+    public function option(){
+
+        return $this->hasMany(Option::class,'product_id');
+    }
+
+    //relation of frontend
+
+    //this relation retrieve images of products
+    public function images(){
+        return $this->hasMany(ProductImage::class,'product_id');
+    }
+
 }

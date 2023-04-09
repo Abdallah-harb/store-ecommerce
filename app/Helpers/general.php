@@ -5,7 +5,7 @@ function get_folder(){
     return app()->getLocale() =='ar'? 'css-rtl':'css';
 }
 
-define('PAGINATION_COUNT',15);
+define('PAGINATION_COUNT',10);
 
 //general function for upload images
 
