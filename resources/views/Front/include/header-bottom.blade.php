@@ -74,56 +74,7 @@
                             <div id="megamenu" class="nov-megamenu clearfix">
                                 <ul class="menu level1">
                                     <li class="item home-page has-sub"><span class="opener"></span><a
-                                            href="index-3.htm?home" title="Home"><i class="zmdi zmdi-home"></i>Home</a>
-                                        <div class="dropdown-menu" style="width:200px">
-                                            <ul class="">
-                                                <li class="item "><a href="index-4.htm?home=home_1" title="Homepage 1">Homepage
-                                                        1</a></li>
-                                                <li class="item "><a href="index-5.htm?home=home_2" title="Homepage 2">Homepage
-                                                        2</a></li>
-                                                <li class="item "><a href="index.htm?home=home_3" title="Homepage 3">Homepage
-                                                        3</a></li>
-                                                <li class="item "><a href="index-6.htm?home=home_4" title="Homepage 4">Homepage
-                                                        4</a></li>
-                                                <li class="item "><a href="index-7.htm?home=home_5" title="Homepage 5">Homepage
-                                                        5</a></li>
-                                                <li class="item "><a href="index-8.htm?home=home_6" title="Homepage 6">Homepage
-                                                        6</a></li>
-                                                <li class="item "><a href="index-9.htm?home=home_7" title="Homepage 7">Homepage
-                                                        7</a></li>
-                                                <li class="item "><a href="index-10.htm?home=home_8" title="Homepage 8">Homepage
-                                                        8</a></li>
-                                            </ul>
-                                        </div>
-                                    </li>
-                                    <li class="item  has-sub"><span class="opener"></span><a href="#" title="Blog"><i
-                                                class="zmdi zmdi-library"></i>Blog</a>
-                                        <div class="dropdown-menu" style="width:270px">
-                                            <ul class="">
-                                                <li class="item "><a
-                                                        href="index.php.html?fc=module&amp;module=smartblog&amp;id_post=14&amp;controller=details"
-                                                        title="Blog detail">Blog detail</a></li>
-                                                <li class="item "><a
-                                                        href="/savemart/blog.html?index.php&cateblog_layout=layout-left-column&cateblog_type=list&cateblog_columns=1"
-                                                        title="Category Blog ( Left column)">Category Blog ( Left
-                                                        column)</a></li>
-                                                <li class="item "><a
-                                                        href="/savemart/blog.html?index.php&cateblog_layout=layout-right-column&cateblog_type=list&cateblog_columns=1"
-                                                        title="Category Blog ( Right column)">Category Blog ( Right
-                                                        column)</a></li>
-                                                <li class="item "><a
-                                                        href="/savemart/blog.html?index.php&cateblog_layout=layout-one-column&cateblog_type=grid&cateblog_columns=1"
-                                                        title="Category Blog ( One column)">Category Blog ( One
-                                                        column)</a></li>
-                                                <li class="item "><a
-                                                        href="/savemart/blog.html?index.php&cateblog_layout=layout-one-column&cateblog_type=grid&cateblog_columns=3"
-                                                        title="Category Blog ( Grid  column )">Category Blog ( Grid
-                                                        column )</a></li>
-                                                <li class="item "><a
-                                                        href="/savemart/blog.html?index.php&cateblog_type=list&cateblog_columns=1&cateblog_layout=layout-one-column"
-                                                        title="Category Blog List">Category Blog List</a></li>
-                                            </ul>
-                                        </div>
+                                            href="{{route('home')}}" title="Home">Home</a>
                                     </li>
                                     <li class="item menu-page group"><span class="opener"></span><a
                                             href="sitemap.html?controller=sitemap" title="Pages"><i
