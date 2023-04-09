@@ -128,7 +128,14 @@ Route::group(['prefix' => LaravelLocalization::setLocale(),
             Route::get('delete/{id}','OptionController@delete')->name('admin.options.delete');
 
         });
+               ############ Sliders ############
+        Route::group(['prefix'=>'sliders'],function (){
+            ############## CRUD ############
+            Route::get('slide','SlidersController@getImage')->name('admin.slide.create');
+            Route::post('store_slide','SlidersController@storeimage')->name('admin.slide.store');
+            Route::post('slide/db','SlidersController@saveimagedb')->name('admin.slide.db');
 
+        });
 
 
 

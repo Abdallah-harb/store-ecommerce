@@ -46,7 +46,6 @@
                                         <table class="table display nowrap table-striped table-bordered scroll-horizontal">
                                             <thead class="">
                                             <tr>
-                                                <th>option </th>
                                                  <th>name</th>
                                                  <th>price</th>
                                                  <th>product</th>
@@ -72,10 +71,6 @@
 
                                                                 <a href="{{route('admin.options.delete',$option -> id)}}"
                                                                    class="btn btn-outline-danger btn-min-width box-shadow-3 mr-1 mb-1">حذف</a>
-
-
-
-
                                                             </div>
                                                         </td>
                                                     </tr>

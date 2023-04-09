@@ -69,6 +69,11 @@ class Product extends Model
         return $this->hasMany(Option::class,'product_id');
     }
 
+    //relation of frontend
 
+    //this relation retrieve images of products
+    public function images(){
+        return $this->hasMany(ProductImage::class,'product_id');
+    }
 
 }

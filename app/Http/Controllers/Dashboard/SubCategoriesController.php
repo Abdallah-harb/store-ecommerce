@@ -62,7 +62,7 @@ class SubCategoriesController extends Controller
             return redirect()->route('admin.mainCategories.all')->with(['error'=>'هناك خطأ فى البيانات' ]);
 
         //get all main category on select box
-        $categories =    $categories =  Category::parent()->orderBy('id','DESC')->get();
+        $categories =  Category::parent()->orderBy('id','DESC')->get();
 
         return view('Dashboard.subcategories.edit',compact('mainCategory','categories'));
     }
